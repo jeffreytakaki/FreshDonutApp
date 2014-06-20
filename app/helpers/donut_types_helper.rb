@@ -1,0 +1,2 @@
+module DonutTypesHelper
+end

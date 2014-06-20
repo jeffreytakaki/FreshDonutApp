@@ -1,0 +1,21 @@
+# Add application configuration variables here, as shown below.
+#
+# PUSHER_APP_ID: "2954"
+# PUSHER_KEY: 7381a978f7dd7f9a1117
+# PUSHER_SECRET: abdc3b896a0ffb85d373
+# STRIPE_API_KEY: EdAvEPVEC3LuaTg5Q3z6WbDVqZlcBQ8Z
+# STRIPE_PUBLIC_KEY: pk_BRgD57O8fHja9HxduJUszhef6jCyS
+
+YELP_YWSID: kimNiiVSAjQNHvodc9WeLQ
+YELP_CONSUMER_KEY: QQo6EuAp8SJtp-hJZAIrdw
+YELP_CONSUMER_SECRET: T22pm5eUnlxs_NtkuHQncxYzG-s
+YELP_TOKEN: 2Dx9CDpLDxY6cZM-5cvgFRyYz5Cxx1x6
+YELP_TOKEN_SECRET: Dzu8lvcvEabB5EdOFYZ26_WAawU
+SECRET_KEY_BASE: FreshDonutApp::Application.config.secret_key_base = 829035d152b1755333b092c62d24691d42f80c29a360785d7c207cd8f89a5576a537615084ef00907f6c5eaf24ff53054ecaaa48f21a9a01d38c9c15b3072206
+# Your secret key is used for verifying the integrity of signed cookies.
+# If you change this key, all old signed cookies will become invalid!
+# Make sure the secret is at least 30 characters and all random,
+# no regular words or you'll be exposed to dictionary attacks.
+# You can use `rake secret` to generate a secure secret key.
+# Make sure the secrets in this file are kept private
+# if you're sharing your code publicly.

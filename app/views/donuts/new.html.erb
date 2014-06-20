@@ -1,0 +1,7 @@
+<h1>Donuts#new</h1>
+<p>Find me in app/views/donuts/new.html.erb</p>
+
+<%= form_for @donut do |f| %>
+	<%= collection_select(:donut, :name, DonutType.all, :kind, :kind) %>
+	<%= f.submit "fresh donut" %>
+<% end %>
