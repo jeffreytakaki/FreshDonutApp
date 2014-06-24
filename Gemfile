@@ -46,6 +46,7 @@ gem 'foundation-rails'
 gem "figaro"
 gem 'rails_12factor'
 
+gem "geocoder"
 
 gem 'yelp', require: 'yelp'
 gem 'oauth', require: 'oauth'
@@ -55,4 +56,7 @@ gem 'angular-rails-templates'
 group :development, :test do
 	gem "rspec-rails"
 end
+
+# gem 'shoulda-matchers'
+# should use shoulda-matchers 
 

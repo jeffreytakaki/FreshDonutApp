@@ -7,7 +7,12 @@ class DonutsController < ApplicationController
   def index
     # @donuts = donuts.all
     # respond_with @donuts
+  
+    # render json for angular when implemented.
+    # render :json => Yelp.client.search(location, term: "donuts",limit: 20).businesses
+    @yelpsearch = Yelp.client.search("Los Angeles", term: "donuts",limit: 40).businesses
   end
+
 
   def show
     respond_with @donut

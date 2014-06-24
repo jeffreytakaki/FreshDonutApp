@@ -29,11 +29,17 @@ class UsersController < ApplicationController
 
 	def search(location, search_term)
     # parameters = { term: params[:term], limit: 8 }
-       render :json => Yelp.client.search(location, term: search_term,limit: 8).businesses
+       render :json => Yelp.client.search(location, term: "donuts",limit: 20).businesses
+       @name = Yelp.client.search(location, term: "donuts",radius_filter: 10,limit: 20).businesses
     # @city_state_zip = Yelp.client.search(location, term: search_term,limit: 8).businesses[0].location.display_address[2]
     # @phone = Yelp.client.search(location, term: search_term,limit: 8).businesses[0].phone
     # @web = Yelp.client.search(location, term: search_term,limit: 8).businesses[0].url
   	end
+
+  	def geo
+  		search()
+  	end
+
 
 	protected
 
