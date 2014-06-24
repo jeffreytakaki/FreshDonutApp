@@ -20,12 +20,14 @@ class DonutsController < ApplicationController
 
   def create
     @donut = current_user.donuts.new(params.require(:donut).permit(:name, :user_id))
-
+    @donut.user_id = current_user.id
+    @user = current_user
+    @donuts = Donut.find_by(user_id: current_user.id)
     if @donut.save
       respond_to do |format|
-        # format.html { redirect_to current_user }
+        format.html { redirect_to current_user }
         # changed to render new instead
-        format.html { redirect_to new_donut_path }
+        # format.html { redirect_to new_donut_path }
         format.json { render json: @user, status: :created }
       end
     else

@@ -1,8 +1,17 @@
-<%= form_for @user do |u| %>
-	Name: <%= u.text_field :name %><br>
-	Email: <%= u.text_field :email %><br>
-	Password: <%= u.password_field :password %><br>
-	Message: <%= u.text_field :message %><br>
-	Attending? <%= u.check_box :attendance %><br><br>
-	<%= u.submit %>
+<%#= form_for @user do |u| %>
+	<!-- Name: <%#= u.text_field :name %><br> -->
+	<!-- Email: <%#= u.text_field :email %><br> -->
+	<!-- Password: <%#= u.password_field :password %><br> -->
+	<!-- Message: <%#= u.text_field :message %><br> -->
+	<!-- Attending? <%#= u.check_box :attendance %><br><br> -->
+	<%#= u.submit %>
+<%# end %>
+
+<%= form_for @donut do |f| %>
+	<%= collection_select(:donut, :name, DonutType.all, :kind, :kind) %>
+	<%= f.submit "fresh donut" %>
 <% end %>
+
+<% Donut.all.each do |d| %>
+	<li><%= d.name %></li>
+	<% end %>

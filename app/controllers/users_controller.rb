@@ -24,6 +24,7 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
+		@donut = Donut.new
 	end
 
 	def search(location, search_term)
