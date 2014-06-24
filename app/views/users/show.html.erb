@@ -1,6 +1,37 @@
 <h1>Users#show</h1>
 <p>Find me in app/views/users/show.html.erb</p>
-<%= current_user.name %>
-<%= current_user.donuts.all.each do |d| %>
-<%= d.name %> <br />
+
+<li>
+  <a ui-sref="newUser">Home</a>
+</li>
+<li>
+  <a ui-sref="signin">Sign In</a>
+</li>
+<li>
+  <a ui-sref="newUser">Create a Vendor</a>
+</li>
+<li>
+  <a ui-sref="userprofile">User Profile</a>
+</li>
+
+
+<!-- <div x-ng-app = "donut-app" class = "container">
+	
+	<div x-ng-controller = "UserCtrl">
+
+		
+
+		
+</div>
+	</div> -->
+
+
+
+ <%#= current_user.name %>
+
+<% User.all.each do |d| %>
+<%= d.name %> 
 <% end %>
+
+
+

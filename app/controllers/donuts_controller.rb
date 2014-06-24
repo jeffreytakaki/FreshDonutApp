@@ -23,7 +23,9 @@ class DonutsController < ApplicationController
 
     if @donut.save
       respond_to do |format|
-        format.html { redirect_to current_user }
+        # format.html { redirect_to current_user }
+        # changed to render new instead
+        format.html { redirect_to new_donut_path }
         format.json { render json: @user, status: :created }
       end
     else
@@ -35,5 +37,12 @@ class DonutsController < ApplicationController
   end
 
   def destroy
+
+    @donut.destroy
+
+    respond_to do |format|
+      format.html { redirect_to users_path }
+      format.json { render json: { head: :ok } }
+    end
   end
 end

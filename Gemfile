@@ -21,8 +21,6 @@ gem 'coffee-rails', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
-
-
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -51,3 +49,10 @@ gem 'rails_12factor'
 
 gem 'yelp', require: 'yelp'
 gem 'oauth', require: 'oauth'
+
+gem 'angular-rails-templates'
+
+group :development, :test do
+	gem "rspec-rails"
+end
+

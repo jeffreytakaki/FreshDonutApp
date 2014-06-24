@@ -8,11 +8,29 @@
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
   </head>
 
   <body>
+
+<li>
+  <a ui-sref="newUser">Home</a>
+</li>
+<li>
+  <a ui-sref="signin">Sign In</a>
+</li>
+<li>
+  <a ui-sref="newUser">Create a Vendor</a>
+</li>
+<li>
+  <a ui-sref="userprofile">User Profile</a>
+</li>
+
+
+
+    
 
 <!-- start of nav bar -->
 <nav class="top-bar" data-topbar>
@@ -61,6 +79,6 @@
 
 
     <%= yield %>
-    <%= javascript_include_tag "application" %>
+    
   </body>
 </html>
