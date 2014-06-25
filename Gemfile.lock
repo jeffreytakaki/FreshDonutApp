@@ -58,6 +58,9 @@ GEM
     geocoder (1.2.1)
     hike (1.2.3)
     i18n (0.6.9)
+    jbuilder (1.5.3)
+      activesupport (>= 3.0.0)
+      multi_json (>= 1.2.0)
     jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
@@ -158,6 +161,7 @@ DEPENDENCIES
   figaro
   foundation-rails
   geocoder
+  jbuilder (~> 1.2)
   jquery-rails
   oauth
   pg

@@ -46,9 +46,8 @@
             map: map,
             });
 
-            // creates geocoder object
+            // creates geocoder object. commented out for scope limitation.
             var geocoder = new google.maps.Geocoder
-
             geocoder.geocode({location: myLatLng}, function(geodata) {
                 address = geodata[0].formatted_address
                 yelp()
@@ -81,84 +80,130 @@
           });
         }
 
-        //add function for gathering donut locations. from yelp.
-        //use geolocatin coordinates to search yelp api
 
-      // start of yelp api
+        // getUsers();
+
+        // function getUsers() {
+
+        //   $.ajax ({
+        //     type: "GET", 
+        //     dataType: "json", 
+        //     url: "http://localhost:3000/users.json"            
+        //   }).done(function(data){
+        //       mapUsers(data);
+        //   });
+        // }
+
+
+        // function mapUsers(user_data) {
+
+        //   // for loop to place each marker with info from the JSON
+
+        //   var i, newMarker;
+
+        //   for (i=0; i < user_data.users.length; i++) {
+
+        //     newMarker = new google.maps.Marker({
+        //       position: new google.maps.LatLng(user_data["users"][i]["latitude"], user_data["users"][i]["longitude"]),
+        //       map: map, 
+        //       title: (user_data["users"][i]["name"])
+        //     });
+
+        //   };
+        // }
+
+
+
+        // var marker = new google.maps.Marker({
+        //    position: myLatLng, // marker placed at the same location as our map center 
+        //    map: map, // make sure this matches the name of your map (ours is called "map")
+        //    title: "GA!" // for hover
+        // });
+
+
+// start of yelp api
+
+// geolocation coordinates were formatted as "formatted address"
+// to allow yelp api to search for results. results near geolocation were successful,
+// however, i was unable to put these results as markers on google maps due to these
+// addresses having to be reformatted to long/lat again. 
+// for the purposes of this project, i will just post new vendor accounts using geocoder
+// gem (it provides long/lat) to the map as markers.
 
 function yelp() {
   var auth = {
-  //
-  // Update with your auth tokens.
-  //
-  consumerKey: "QQo6EuAp8SJtp-hJZAIrdw",
-  consumerSecret: "T22pm5eUnlxs_NtkuHQncxYzG-s",
-  accessToken: "2Dx9CDpLDxY6cZM-5cvgFRyYz5Cxx1x6",
-  // This example is a proof of concept, for how to use the Yelp v2 API with javascript.
-  // You wouldn't actually want to expose your access token secret like this in a real application.
-  accessTokenSecret: "Dzu8lvcvEabB5EdOFYZ26_WAawU",
-  serviceProvider: {
-    signatureMethod: "HMAC-SHA1"
-  }
-};
+    //
+    // Update with your auth tokens.
+    //
+    consumerKey: "QQo6EuAp8SJtp-hJZAIrdw",
+    consumerSecret: "T22pm5eUnlxs_NtkuHQncxYzG-s",
+    accessToken: "2Dx9CDpLDxY6cZM-5cvgFRyYz5Cxx1x6",
+    // This example is a proof of concept, for how to use the Yelp v2 API with javascript.
+    // You wouldn't actually want to expose your access token secret like this in a real application.
+    accessTokenSecret: "Dzu8lvcvEabB5EdOFYZ26_WAawU",
+    serviceProvider: {
+      signatureMethod: "HMAC-SHA1"
+    }
+  };
 
-var terms = 'donuts';
-var near = 'Los+Angeles';
-var accessor = {
-  consumerSecret: auth.consumerSecret,
-  tokenSecret: auth.accessTokenSecret
-};
-parameters = [];
-parameters.push(['term', terms]);
-parameters.push(['location', address]);
-parameters.push(['callback', 'cb']);
-parameters.push(['oauth_consumer_key', auth.consumerKey]);
-parameters.push(['oauth_consumer_secret', auth.consumerSecret]);
-parameters.push(['oauth_token', auth.accessToken]);
-parameters.push(['oauth_signature_method', 'HMAC-SHA1']);
-var message = {
-  'action': 'http://api.yelp.com/v2/search',
-  'method': 'GET',
-  'parameters': parameters
-};
-OAuth.setTimestampAndNonce(message);
-OAuth.SignatureMethod.sign(message, accessor);
-var parameterMap = OAuth.getParameterMap(message.parameters);
-parameterMap.oauth_signature = OAuth.percentEncode(parameterMap.oauth_signature)
-// console.log(parameterMap);
-$.ajax({
-  'url': message.action,
-  'data': parameterMap,
-  'cache': true,
-  'dataType': 'jsonp',
-  'jsonpCallback': 'cb',
-  'success': function(data, textStats, XMLHttpRequest) {
-    
-    var output = data;
-    console.log(output);
-
-    $("map-canvas").append(output);
-  }
-}); // end of yelp api
+  var terms = 'donuts';
+  var near = 'Los+Angeles';
+  var accessor = {
+    consumerSecret: auth.consumerSecret,
+    tokenSecret: auth.accessTokenSecret
+  };
+  parameters = [];
+  parameters.push(['term', terms]);
+  parameters.push(['location', address]);
+  parameters.push(['callback', 'cb']);
+  parameters.push(['oauth_consumer_key', auth.consumerKey]);
+  parameters.push(['oauth_consumer_secret', auth.consumerSecret]);
+  parameters.push(['oauth_token', auth.accessToken]);
+  parameters.push(['oauth_signature_method', 'HMAC-SHA1']);
+  var message = {
+    'action': 'http://api.yelp.com/v2/search',
+    'method': 'GET',
+    'parameters': parameters
+  };
+  OAuth.setTimestampAndNonce(message);
+  OAuth.SignatureMethod.sign(message, accessor);
+  var parameterMap = OAuth.getParameterMap(message.parameters);
+  parameterMap.oauth_signature = OAuth.percentEncode(parameterMap.oauth_signature)
+  // console.log(parameterMap);
+  $.ajax({
+    'url': message.action,
+    'data': parameterMap,
+    'cache': true,
+    'dataType': 'jsonp',
+    'jsonpCallback': 'cb',
+    'success': function(data, textStats, XMLHttpRequest) {   
+      var output = data;
+      console.log(output);
+      geocodeYelpResults(output.businesses)
+    } // end of ajax call 
+  }); // end of yelp api
 
 } //end of yelp function
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 } //end of initialize tag
+
+
+function geocodeYelpResults(results) {
+  results.forEach(function (business) {
+    var addressString = business.location.address[0] + ", " + business.location.city + ", " + business.location.state_code + " " + business.location.postal_code;
+    var geocoder = new google.maps.Geocoder;
+    geocoder.geocode({address: addressString}, function(geodata) {
+      var marker = new google.maps.Marker({
+            position: geodata[0].geometry.location,
+            map: map
+      });
+    });
+  });
+
+}
+
       google.maps.event.addDomListener(window, 'load', initialize);
+
     </script>
 <!-- End of Google Maps and Geolocation -->
 

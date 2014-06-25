@@ -4,6 +4,7 @@
 <%= form_for @user do |u| %>
 	<%= u.text_field :name, :placeholder => "Name"  %>
 	<%= u.text_field :email, :placeholder => "Email"  %>
+	<%= u.text_field :address, :placeholder => "Address"  %>
 	<%= u.password_field :password, :placeholder => "Password" %>	
 	<%= u.submit "Login" %>
 <% end %>

@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
 		else
 			session[:remember_token] = @user.id
 			@current_user = @user
-      redirect_to users_path
+      redirect_to user_path
 		end
   end
 

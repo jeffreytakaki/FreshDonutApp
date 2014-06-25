@@ -3,6 +3,9 @@ require 'bcrypt'
 class User < ActiveRecord::Base
 	
 	has_many :donuts
+	
+	geocoded_by :address   # can also be an IP address
+	after_validation :geocode
 
 	def password
 		@password
@@ -19,5 +22,9 @@ class User < ActiveRecord::Base
     else
       false
     end
+  end
+
+  def show
+  	@user = User.find(params[:id])
   end
 end
