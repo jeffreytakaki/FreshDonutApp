@@ -9,8 +9,14 @@ class DonutsController < ApplicationController
     # respond_with @donuts
   
     # render json for angular when implemented.
-    # render :json => Yelp.client.search(location, term: "donuts",limit: 20).businesses
-    @yelpsearch = Yelp.client.search("Los Angeles", term: "donuts",limit: 40).businesses
+
+    #1  Grab the user's location's coordinates @location
+
+
+    #2  The we plug in the @location into the yelp api for the map 
+    # @yelpsearch = Yelp.client.search("350 7th St N, Minneapolis, MN", term: "donuts",limit: 40).businesses
+      # @yelpsearch = Yelp.client.search(latlng, term: "donuts",limit: 40).businesses
+
   end
 
 

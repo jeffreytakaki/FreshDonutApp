@@ -16,7 +16,9 @@
 <!-- Start of Google Maps and Geolocation using HTML 5 -->
 <!-- User must accept geolocation settings to use FreshDonut -->
     <script type="text/javascript">
-      function initialize() {
+      var map;
+      function initialize() {       
+
         var myLatLng = new google.maps.LatLng(-34.0128358, -118.495338); 
         // Set as a var because it will also be used for center/marker position -- you can elect to create separate google.maps.LatLng objects
         var DonutMarker;
@@ -24,7 +26,7 @@
           center: myLatLng, // see above
           zoom: 12 // arbitrary; you can zoom at whichever level you like
         };
-        var map = new google.maps.Map(document.getElementById("map-canvas"),
+        map = new google.maps.Map(document.getElementById("map-canvas"),
           mapOptions); // rendering a map in a div with the id of "map-canvas" and the options specified above in mapOptions
 
         if(navigator.geolocation) {
@@ -32,6 +34,10 @@
             navigator.geolocation.getCurrentPosition(function(position) {
             // navigator html5 method to geolocate
             myLatLng = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+            // var lat = position.coords.latitude;
+            // console.log(lat);
+            // long = position.coords.longitude;
+            // console.log(long);
             // variable set to store lat/long to be inserted into google maps.
             // position.coords.latitude & longitude used to filter search for donuts & yelp api browsing (creation of donut vendor)
             map.setCenter(myLatLng);
@@ -39,6 +45,16 @@
             position: myLatLng,
             map: map,
             });
+
+            // creates geocoder object
+            var geocoder = new google.maps.Geocoder
+
+            geocoder.geocode({location: myLatLng}, function(geodata) {
+                address = geodata[0].formatted_address
+                yelp()
+            });
+            // end of geocoder object
+
 
           }, function() {
             handleNoGeolocation(browserSupportFlag);
@@ -68,11 +84,80 @@
         //add function for gathering donut locations. from yelp.
         //use geolocatin coordinates to search yelp api
 
-        function yelpsearch() { 
-        }
+      // start of yelp api
+
+function yelp() {
+  var auth = {
+  //
+  // Update with your auth tokens.
+  //
+  consumerKey: "QQo6EuAp8SJtp-hJZAIrdw",
+  consumerSecret: "T22pm5eUnlxs_NtkuHQncxYzG-s",
+  accessToken: "2Dx9CDpLDxY6cZM-5cvgFRyYz5Cxx1x6",
+  // This example is a proof of concept, for how to use the Yelp v2 API with javascript.
+  // You wouldn't actually want to expose your access token secret like this in a real application.
+  accessTokenSecret: "Dzu8lvcvEabB5EdOFYZ26_WAawU",
+  serviceProvider: {
+    signatureMethod: "HMAC-SHA1"
+  }
+};
+
+var terms = 'donuts';
+var near = 'Los+Angeles';
+var accessor = {
+  consumerSecret: auth.consumerSecret,
+  tokenSecret: auth.accessTokenSecret
+};
+parameters = [];
+parameters.push(['term', terms]);
+parameters.push(['location', address]);
+parameters.push(['callback', 'cb']);
+parameters.push(['oauth_consumer_key', auth.consumerKey]);
+parameters.push(['oauth_consumer_secret', auth.consumerSecret]);
+parameters.push(['oauth_token', auth.accessToken]);
+parameters.push(['oauth_signature_method', 'HMAC-SHA1']);
+var message = {
+  'action': 'http://api.yelp.com/v2/search',
+  'method': 'GET',
+  'parameters': parameters
+};
+OAuth.setTimestampAndNonce(message);
+OAuth.SignatureMethod.sign(message, accessor);
+var parameterMap = OAuth.getParameterMap(message.parameters);
+parameterMap.oauth_signature = OAuth.percentEncode(parameterMap.oauth_signature)
+// console.log(parameterMap);
+$.ajax({
+  'url': message.action,
+  'data': parameterMap,
+  'cache': true,
+  'dataType': 'jsonp',
+  'jsonpCallback': 'cb',
+  'success': function(data, textStats, XMLHttpRequest) {
+    
+    var output = data;
+    console.log(output);
+
+    $("map-canvas").append(output);
+  }
+}); // end of yelp api
+
+} //end of yelp function
+      
 
 
-      } //end of initialize tag
+
+
+
+
+
+
+
+
+
+
+
+
+} //end of initialize tag
       google.maps.event.addDomListener(window, 'load', initialize);
     </script>
 <!-- End of Google Maps and Geolocation -->
