@@ -36,13 +36,13 @@
           <li><%= link_to "Sign Up", new_user_path %></li>
           <li><%= link_to "Sign In", new_sessions_path %></li>
           <% else %>
-
+          <li><%= link_to "FreshList", current_user %></li>
           <li><%= link_to "Sign Out", sessions_path, :method => :delete %></li>
-          <li><%= link_to "Add FreshDonut", @user, :method => :delete %></li>
+
           <% end %>
         </ul>
       </li>
-    </ul>    
+    </ul>   
   </section>
 </nav>
 <!-- end of nav bar -->

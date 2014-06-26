@@ -17,7 +17,7 @@
         var DonutMarker;
         var mapOptions = {
           center: myLatLng, // see above
-          zoom: 12 // arbitrary; you can zoom at whichever level you like
+          zoom: 15 // arbitrary; you can zoom at whichever level you like
         };
         map = new google.maps.Map(document.getElementById("map-canvas"),
           mapOptions); // rendering a map in a div with the id of "map-canvas" and the options specified above in mapOptions
@@ -91,11 +91,9 @@
 
           // for loop to place each marker with info from the JSON
           
-          var image = 'assets/donutmarkersmall1.png';
+          var image = 'assets/donutmarker275small.png';
           var i, newMarker;
-          
-
-        
+                  
           for (i=0; i < user_data.users.length; i++) {
                
             newMarker = new google.maps.Marker({
@@ -218,16 +216,15 @@ function geocodeYelpResults(results) {
             position: geodata[0].geometry.location,
             map: map
       });
-      
+
 
     });
   });
 
 }
      
-      google.maps.event.addDomListener(window, 'load', initialize);
-
-    </script>
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
 <!-- End of Google Maps and Geolocation -->
 
 
