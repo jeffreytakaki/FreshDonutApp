@@ -214,7 +214,8 @@ function geocodeYelpResults(results) {
     geocoder.geocode({address: addressString}, function(geodata) {
       var marker = new google.maps.Marker({
             position: geodata[0].geometry.location,
-            map: map
+            map: map,
+            icon: image
       });
 
 
