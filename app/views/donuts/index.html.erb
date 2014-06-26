@@ -80,8 +80,8 @@
           $.ajax ({
             type: "GET", 
             dataType: "json", 
-            // url: "http://FreshDonut.herokuapp.com/users.json"
-            url: "http://localhost:3000/users.json"            
+            url: "http://FreshDonut.herokuapp.com/users.json"
+            // url: "http://localhost:3000/users.json"            
           }).done(function(data){
               mapUsers(data);
           });
