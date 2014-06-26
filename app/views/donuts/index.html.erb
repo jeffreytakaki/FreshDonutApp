@@ -2,21 +2,14 @@
 <p>Find me in app/views/donuts/index.html.erb</p>
 
 
-<div x-ng-app = "donut-app" class = "container">
-
-  <div x-ng-controller = "UserCtrl">
-
-
-
-  </div>
-</div>
-
 <div id="map-canvas"></div>
 
 <!-- Start of Google Maps and Geolocation using HTML 5 -->
 <!-- User must accept geolocation settings to use FreshDonut -->
     <script type="text/javascript">
+      
       var map;
+
       function initialize() {       
 
         var myLatLng = new google.maps.LatLng(-34.0128358, -118.495338); 
@@ -43,7 +36,6 @@
             map.setCenter(myLatLng);
             DonutMarker = new google.maps.Marker({
             position: myLatLng,
-            map: map,
             });
 
             // creates geocoder object. commented out for scope limitation.
@@ -81,36 +73,39 @@
         }
 
 
-        // getUsers();
+        getUsers();
 
-        // function getUsers() {
+        function getUsers() {
 
-        //   $.ajax ({
-        //     type: "GET", 
-        //     dataType: "json", 
-        //     url: "http://localhost:3000/users.json"            
-        //   }).done(function(data){
-        //       mapUsers(data);
-        //   });
-        // }
+          $.ajax ({
+            type: "GET", 
+            dataType: "json", 
+            url: "http://localhost:3000/users.json"            
+          }).done(function(data){
+              mapUsers(data);
+          });
+        }
 
+        
+        function mapUsers(user_data) {
 
-        // function mapUsers(user_data) {
+          // for loop to place each marker with info from the JSON
+          
+          var image = '../app/assets/images/donutmarker.png';
+          var i, newMarker;
+          
 
-        //   // for loop to place each marker with info from the JSON
-
-        //   var i, newMarker;
-
-        //   for (i=0; i < user_data.users.length; i++) {
-
-        //     newMarker = new google.maps.Marker({
-        //       position: new google.maps.LatLng(user_data["users"][i]["latitude"], user_data["users"][i]["longitude"]),
-        //       map: map, 
-        //       title: (user_data["users"][i]["name"])
-        //     });
-
-        //   };
-        // }
+        
+          for (i=0; i < user_data.users.length; i++) {
+               
+            newMarker = new google.maps.Marker({
+              position: new google.maps.LatLng(user_data["users"][i]["latitude"], user_data["users"][i]["longitude"]),
+              map: map, 
+              title: (user_data["users"][i]["name"]),
+              icon: image
+            });
+          };
+        }
 
 
 

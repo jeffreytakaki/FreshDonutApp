@@ -3,8 +3,8 @@ class UsersController < ApplicationController
 
     # /users.json
   def index
-    @users = User.all
-    # @donuts = Donut.all
+    @users = @users = User.where("fresh = true")
+    @donuts = Donut.all
     respond_with @users
   end
 
@@ -12,10 +12,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 	@donut = Donut.new
 
-  end
-
-  def fresh
-  	@donuts = Donut.all
   end
 
   def new
@@ -51,7 +47,7 @@ class UsersController < ApplicationController
   protected
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :address)
+    params.require(:user).permit(:name, :email, :password, :address, :fresh)
   end
 end
 

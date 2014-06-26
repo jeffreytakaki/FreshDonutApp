@@ -19,6 +19,9 @@ class DonutsController < ApplicationController
 
   end
 
+  def fresh
+    @donuts = Donut.all
+  end
 
   def show
     respond_with @donut
@@ -30,11 +33,13 @@ class DonutsController < ApplicationController
   end
 
   def create
-    @donut = current_user.donuts.new(params.require(:donut).permit(:name, :user_id))
-    @donut.user_id = current_user.id
+    @donut = current_user.donuts.new(params.require(:donut).permit(:name, :user_id, :fresh))
     @user = current_user
-    @donuts = Donut.find_by(user_id: current_user.id)
+    # @donut.user_id = current_user.id
+    # @donuts = Donut.find_by(user_id: current_user.id)
     if @donut.save
+      @user.fresh = true
+      @user.save
       respond_to do |format|
         format.html { redirect_to current_user }
         # changed to render new instead
