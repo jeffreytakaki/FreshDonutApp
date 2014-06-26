@@ -18,3 +18,4 @@
 	DonutType.create!(kind: "Blueberry");
 	DonutType.create!(kind: "French Cruller");
 	DonutType.create!(kind: "Sprinkles");
+	DonutType.create!(kind: "Maple Bacon");
