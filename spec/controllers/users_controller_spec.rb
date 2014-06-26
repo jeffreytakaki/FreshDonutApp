@@ -13,7 +13,7 @@ describe UsersController do
 			get :index
 		end
 
-		xit "should render the index template" do
+		it "should render the index template" do
 			expect(response).to render_template :index
 		end
 	end
@@ -24,14 +24,14 @@ describe UsersController do
 		end
 
 
-		xit "should render the new template" do
+		it "should render the new template" do
 			expect(response).to render_template :new
 		end
 	end
 
 	describe "POST create" do
 	    describe "successful create" do
-	     xit "should create a user in the database" do
+	     it "should create a user in the database" do
 	        expect do
 	          post :create, user: valid_attributes
 	        end

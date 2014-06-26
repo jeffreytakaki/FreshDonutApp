@@ -2,10 +2,10 @@ require 'bcrypt'
 
 class User < ActiveRecord::Base
 
-	validates_presence_of :name
-	validates :name, presence: true
-	validates :email, presence: true
-	validates :password, presence: true
+	validates_presence_of :name, :on => :create
+	validates :name, presence: true, :on => :create
+	validates :email, presence: true, :on => :create
+	validates :password, presence: true, :on => :create
 	
 	has_many :donuts
 	
@@ -29,7 +29,4 @@ class User < ActiveRecord::Base
     end
   end
 
-  def show
-  	@user = User.find(params[:id])
-  end
 end

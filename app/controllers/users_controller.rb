@@ -3,14 +3,14 @@ class UsersController < ApplicationController
 
     # /users.json
   def index
-    @users = @users = User.where("fresh = true")
+    @users = User.where("fresh = true")
     @donuts = Donut.all
     respond_with @users
   end
 
   def show
     @user = User.find(params[:id])
-	@donut = Donut.new
+	  @donut = Donut.new
 
   end
 
