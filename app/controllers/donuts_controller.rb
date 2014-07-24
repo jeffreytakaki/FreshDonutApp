@@ -24,7 +24,12 @@ class DonutsController < ApplicationController
   end
 
   def show
+    @donut = Donut.find(params[:current_user])
     respond_with @donut
+
+    if sessions[:zombie_id] != @tweet.zombie_id
+      
+    end
   end
 
   def new

@@ -2,17 +2,27 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#map-canvas {
-	margin: 0 auto;
-	height: 600px;
-	width: 600px;
+body {
+	background-image: url('donutbackground.png');
 }
 
-#space {
+
+#map-canvas {
+	margin: 0 auto;
 	margin-top: 50px;
-	height: 50px;
+	height: 600px;
+	width: 800px;
+	z-index: 10;
 }
 
 nav {
 	margin-bottom: 50px;
+	z-index: 11;
 }
+
+/*	-webkit-filter: blur(1px);
+  -moz-filter: blur(1px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+*/

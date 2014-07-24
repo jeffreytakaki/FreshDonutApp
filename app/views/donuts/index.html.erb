@@ -3,56 +3,56 @@
 
 <!-- Start of Google Maps and Geolocation using HTML 5 -->
 <!-- User must accept geolocation settings to use FreshDonut -->
-    <script type="text/javascript">
-      
-      var map;
+<script type="text/javascript">
+  
+  var map;
 
-      function initialize() {       
+  function initialize() {       
 
-        var myLatLng = new google.maps.LatLng(-34.0128358, -118.495338); 
-        // Set as a var because it will also be used for center/marker position -- you can elect to create separate google.maps.LatLng objects
-        var DonutMarker;
-        var mapOptions = {
-          center: myLatLng, // see above
-          zoom: 15 // arbitrary; you can zoom at whichever level you like
-        };
-        map = new google.maps.Map(document.getElementById("map-canvas"),
-          mapOptions); // rendering a map in a div with the id of "map-canvas" and the options specified above in mapOptions
+    var myLatLng = new google.maps.LatLng(-34.0128358, -118.495338); 
+    // Set as a var because it will also be used for center/marker position -- you can elect to create separate google.maps.LatLng objects
+    var DonutMarker;
+    var mapOptions = {
+      center: myLatLng, // see above
+      zoom: 15 // arbitrary; you can zoom at whichever level you like
+    };
+    map = new google.maps.Map(document.getElementById("map-canvas"),
+      mapOptions); // rendering a map in a div with the id of "map-canvas" and the options specified above in mapOptions
 
-        if(navigator.geolocation) {
-            browserSupportFlag = true;
-            navigator.geolocation.getCurrentPosition(function(position) {
-            // navigator html5 method to geolocate
-            myLatLng = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-            // var lat = position.coords.latitude;
-            // console.log(lat);
-            // long = position.coords.longitude;
-            // console.log(long);
-            // variable set to store lat/long to be inserted into google maps.
-            // position.coords.latitude & longitude used to filter search for donuts & yelp api browsing (creation of donut vendor)
-            map.setCenter(myLatLng);
-            DonutMarker = new google.maps.Marker({
-            position: myLatLng,
-            });
+    if(navigator.geolocation) {
+        browserSupportFlag = true;
+        navigator.geolocation.getCurrentPosition(function(position) {
+        // navigator html5 method to geolocate
+        myLatLng = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+        // var lat = position.coords.latitude;
+        // console.log(lat);
+        // long = position.coords.longitude;
+        // console.log(long);
+        // variable set to store lat/long to be inserted into google maps.
+        // position.coords.latitude & longitude used to filter search for donuts & yelp api browsing (creation of donut vendor)
+        map.setCenter(myLatLng);
+        DonutMarker = new google.maps.Marker({
+        position: myLatLng,
+        });
 
-            // creates geocoder object. commented out for scope limitation.
-            var geocoder = new google.maps.Geocoder
-            geocoder.geocode({location: myLatLng}, function(geodata) {
-                address = geodata[0].formatted_address
-                yelp()
-            });
-            // end of geocoder object
+        // creates geocoder object. commented out for scope limitation.
+        var geocoder = new google.maps.Geocoder
+        geocoder.geocode({location: myLatLng}, function(geodata) {
+            address = geodata[0].formatted_address
+            yelp()
+        });
+        // end of geocoder object
 
 
-          }, function() {
-            handleNoGeolocation(browserSupportFlag);
-          });
-        }
-        // Browser doesn't support Geolocation
-        else {
-          browserSupportFlag = false;
-          handleNoGeolocation(browserSupportFlag);
-        }
+      }, function() {
+        handleNoGeolocation(browserSupportFlag);
+      });
+    }
+    // Browser doesn't support Geolocation
+    else {
+      browserSupportFlag = false;
+      handleNoGeolocation(browserSupportFlag);
+    }
 
         function handleNoGeolocation(errorFlag) {
           if (errorFlag == true) {
@@ -69,7 +69,6 @@
           });
         }
 
-
         getUsers();
 
         function getUsers() {
@@ -77,8 +76,8 @@
           $.ajax ({
             type: "GET", 
             dataType: "json", 
-            url: "http://FreshDonut.herokuapp.com/users.json"
-            // url: "http://localhost:3000/users.json"            
+            // url: "http://FreshDonut.herokuapp.com/users.json"
+            url: "http://localhost:3000/users.json"            
           }).done(function(data){
               mapUsers(data);
           });
@@ -104,42 +103,27 @@
         }
 
 
-        //  var contentString = '<div id="content">'+
-        //   '<div id="siteNotice">'+
-        //   '</div>'+
-        //   '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
-        //   '<div id="bodyContent">'+
-        //   '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
-        //   'sandstone rock formation in the southern part of the '+
-        //   'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
-        //   'south west of the nearest large town, Alice Springs; 450&#160;km '+
-        //   '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
-        //   'features of the Uluru - Kata Tjuta National Park. Uluru is '+
-        //   'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
-        //   'Aboriginal people of the area. It has many springs, waterholes, '+
-        //   'rock caves and ancient paintings. Uluru is listed as a World '+
-        //   'Heritage Site.</p>'+
-        //   '<p>Attribution: Uluru, <a href="http://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
-        //   'http://en.wikipedia.org/w/index.php?title=Uluru</a> '+
-        //   '(last visited June 22, 2009).</p>'+
-        //   '</div>'+
-        //   '</div>';
+         var contentString = '<div id="content">'+
+          '<div id="siteNotice">'+
+          '</div>'+
+          '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
+          '<div id="bodyContent">'+
+          'businessaddress'+
+          '</div>'+
+          '</div>';
 
-        // var infowindow = new google.maps.InfoWindow({
-        //     content: contentString
-        // });
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
 
-
-
-        // var marker = new google.maps.Marker({
-        //    position: myLatLng, // marker placed at the same location as our map center 
-        //    map: map, // make sure this matches the name of your map (ours is called "map")
-        //    title: "GA!" // for hover
-        // });
+        var marker = new google.maps.Marker({
+           position: myLatLng, // marker placed at the same location as our map center 
+           map: map, // make sure this matches the name of your map (ours is called "map")
+           title: "This is you" // for hover
+        });
 
 
 // start of yelp api
-
 // geolocation coordinates were formatted as "formatted address"
 // to allow yelp api to search for results. results near geolocation were successful,
 // however, i was unable to put these results as markers on google maps due to these
@@ -147,60 +131,63 @@
 // for the purposes of this project, i will just post new vendor accounts using geocoder
 // gem (it provides long/lat) to the map as markers.
 
-function yelp() {
-  var auth = {
-    //
-    // Update with your auth tokens.
-    //
-    consumerKey: "QQo6EuAp8SJtp-hJZAIrdw",
-    consumerSecret: "T22pm5eUnlxs_NtkuHQncxYzG-s",
-    accessToken: "2Dx9CDpLDxY6cZM-5cvgFRyYz5Cxx1x6",
-    // This example is a proof of concept, for how to use the Yelp v2 API with javascript.
-    // You wouldn't actually want to expose your access token secret like this in a real application.
-    accessTokenSecret: "Dzu8lvcvEabB5EdOFYZ26_WAawU",
-    serviceProvider: {
-      signatureMethod: "HMAC-SHA1"
-    }
-  };
+    function yelp() {
+      var auth = {
+        //
+        // Update with your auth tokens.
+        //
+        consumerKey: "QQo6EuAp8SJtp-hJZAIrdw",
+        consumerSecret: "T22pm5eUnlxs_NtkuHQncxYzG-s",
+        accessToken: "2Dx9CDpLDxY6cZM-5cvgFRyYz5Cxx1x6",
+        // This example is a proof of concept, for how to use the Yelp v2 API with javascript.
+        // You wouldn't actually want to expose your access token secret like this in a real application.
+        accessTokenSecret: "Dzu8lvcvEabB5EdOFYZ26_WAawU",
+        serviceProvider: {
+          signatureMethod: "HMAC-SHA1"
+        }
+      };
 
-  var terms = 'donuts';
-  var near = 'Los+Angeles';
-  var accessor = {
-    consumerSecret: auth.consumerSecret,
-    tokenSecret: auth.accessTokenSecret
-  };
-  parameters = [];
-  parameters.push(['term', terms]);
-  parameters.push(['location', address]);
-  parameters.push(['callback', 'cb']);
-  parameters.push(['oauth_consumer_key', auth.consumerKey]);
-  parameters.push(['oauth_consumer_secret', auth.consumerSecret]);
-  parameters.push(['oauth_token', auth.accessToken]);
-  parameters.push(['oauth_signature_method', 'HMAC-SHA1']);
-  var message = {
-    'action': 'http://api.yelp.com/v2/search',
-    'method': 'GET',
-    'parameters': parameters
-  };
-  OAuth.setTimestampAndNonce(message);
-  OAuth.SignatureMethod.sign(message, accessor);
-  var parameterMap = OAuth.getParameterMap(message.parameters);
-  parameterMap.oauth_signature = OAuth.percentEncode(parameterMap.oauth_signature)
-  // console.log(parameterMap);
-  $.ajax({
-    'url': message.action,
-    'data': parameterMap,
-    'cache': true,
-    'dataType': 'jsonp',
-    'jsonpCallback': 'cb',
-    'success': function(data, textStats, XMLHttpRequest) {   
-      var output = data;
-      console.log(output);
-      geocodeYelpResults(output.businesses)
-    } // end of ajax call 
-  }); // end of yelp api
+    var terms = 'donuts';
+    var near = 'Los+Angeles';
+    var accessor = {
+      consumerSecret: auth.consumerSecret,
+      tokenSecret: auth.accessTokenSecret
+    };
+    parameters = [];
+    parameters.push(['term', terms]);
+    parameters.push(['location', address]);
+    parameters.push(['callback', 'cb']);
+    parameters.push(['oauth_consumer_key', auth.consumerKey]);
+    parameters.push(['oauth_consumer_secret', auth.consumerSecret]);
+    parameters.push(['oauth_token', auth.accessToken]);
+    parameters.push(['oauth_signature_method', 'HMAC-SHA1']);
+    var message = {
+      'action': 'http://api.yelp.com/v2/search',
+      'method': 'GET',
+      'parameters': parameters
+    };
+    OAuth.setTimestampAndNonce(message);
+    OAuth.SignatureMethod.sign(message, accessor);
+    var parameterMap = OAuth.getParameterMap(message.parameters);
+    parameterMap.oauth_signature = OAuth.percentEncode(parameterMap.oauth_signature)
+    // console.log(parameterMap);
+    $.ajax({
+      'url': message.action,
+      'data': parameterMap,
+      'cache': true,
+      'dataType': 'jsonp',
+      'jsonpCallback': 'cb',
+      'success': function(data, textStats, XMLHttpRequest) {   
+        var output = data;
+        console.log(output);
+        geocodeYelpResults(output.businesses)
+      } // end of ajax call 
+    }); // end of yelp api
+  } //end of yelp function
 
-} //end of yelp function
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.open(map,marker);
+    });
 
 } //end of initialize tag
 
@@ -215,14 +202,25 @@ function geocodeYelpResults(results) {
             position: geodata[0].geometry.location,
             map: map,
       });
-
-
     });
-  });
-
-}
+    var businessaddress = console.log(business.location.address) 
+  }); //end of results.forEach
+} //end of geocodeYelpResults function
      
+
+
 google.maps.event.addDomListener(window, 'load', initialize);
+
+
+// added event listener hoping it would fix the infowindows not showing
+//to be deleted if this is not the resolution.
+// google.maps.event.addListener(marker, 'click', (function(marker) {
+//         return function() {
+//           infowindow.setContent(businessaddress);
+//           infowindow.open(map, marker);
+//         }
+//       })(marker));
+
 </script>
 <!-- End of Google Maps and Geolocation -->
 
