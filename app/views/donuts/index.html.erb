@@ -87,12 +87,12 @@
         function mapUsers(user_data) {
 
           // for loop to place each marker with info from the JSON
-          
+          console.log(user_data);
           var image = 'assets/donutmarker275small.png';
           var i, newMarker;
                   
           for (i=0; i < user_data.users.length; i++) {
-               
+              
             newMarker = new google.maps.Marker({
               position: new google.maps.LatLng(user_data["users"][i]["latitude"], user_data["users"][i]["longitude"]),
               map: map, 
