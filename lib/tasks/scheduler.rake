@@ -10,4 +10,5 @@ task deletedonuts: :environment do
 	User.all.each do |user|
 		user.update_attributes(fresh: false)
   end
+  
 end

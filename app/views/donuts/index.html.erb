@@ -1,6 +1,33 @@
-
-<div id="map-canvas"></div>
-
+<div class="container">
+  <div id="donutimg"></div>
+  <div id="map-canvas"></div>
+  <div id="about">
+    <div id="aboutfresh">
+      <h1>About Us</h1>
+      <p>Here at Fresh Donuts, our goal is to get these fresh breaded treats to the masses.</p>
+    </div>
+  </div>
+  <div id="howitworks">
+    <div id="steps">
+      <h1>How It Works</h1>
+      <div class="steps" id="one">
+        <h3>Step One</h3>
+        <div id="oneimg"></div>
+        <p>Sign Up</p>
+      </div>
+      <div class="steps" id="two">
+        <h3>Step Two</h3>
+        <div id="twoimg"></div>
+        <p>Enter in Location</p>
+      </div>
+      <div class="steps" id="three">
+        <h3>Step Three</h3>
+        <div id="threeimg"></div>
+        <p>Find your Fresh Donuts</p>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- Start of Google Maps and Geolocation using HTML 5 -->
 <!-- User must accept geolocation settings to use FreshDonut -->
 <script type="text/javascript">
@@ -76,8 +103,8 @@
           $.ajax ({
             type: "GET", 
             dataType: "json", 
-            url: "http://FreshDonut.herokuapp.com/users.json"
-            // url: "http://localhost:3000/users.json"            
+            // url: "http://FreshDonut.herokuapp.com/users.json"
+            url: "http://localhost:3000/users.json"            
           }).done(function(data){
               mapUsers(data);
           });
@@ -99,29 +126,18 @@
               title: (user_data["users"][i]["name"]),
               icon: image
             });
+          var contentString = "hello";
+
+          var infowindow = new google.maps.InfoWindow({
+              content: contentString
+          });
+
+          google.maps.event.addListener(newMarker, 'click', function() {
+          infowindow.open(map,newMarker);
+          });
+
           };
         }
-
-
-         var contentString = '<div id="content">'+
-          '<div id="siteNotice">'+
-          '</div>'+
-          '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
-          '<div id="bodyContent">'+
-          'businessaddress'+
-          '</div>'+
-          '</div>';
-
-        var infowindow = new google.maps.InfoWindow({
-            content: contentString
-        });
-
-        var marker = new google.maps.Marker({
-           position: myLatLng, // marker placed at the same location as our map center 
-           map: map, // make sure this matches the name of your map (ours is called "map")
-           title: "This is you" // for hover
-        });
-
 
 // start of yelp api
 // geolocation coordinates were formatted as "formatted address"
@@ -185,9 +201,7 @@
     }); // end of yelp api
   } //end of yelp function
 
-    google.maps.event.addListener(marker, 'click', function() {
-      infowindow.open(map,marker);
-    });
+
 
 } //end of initialize tag
 
@@ -207,19 +221,7 @@ function geocodeYelpResults(results) {
   }); //end of results.forEach
 } //end of geocodeYelpResults function
      
-
-
 google.maps.event.addDomListener(window, 'load', initialize);
-
-
-// added event listener hoping it would fix the infowindows not showing
-//to be deleted if this is not the resolution.
-// google.maps.event.addListener(marker, 'click', (function(marker) {
-//         return function() {
-//           infowindow.setContent(businessaddress);
-//           infowindow.open(map, marker);
-//         }
-//       })(marker));
 
 </script>
 <!-- End of Google Maps and Geolocation -->

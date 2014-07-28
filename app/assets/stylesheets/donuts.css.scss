@@ -2,19 +2,90 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-body {
+/*body {
 	background-image: url('donutbackground.png');
+}*/
+.container{
+	width:100%;
+	height:auto;
 }
-
+#donutimg{
+	height:305px;
+	width:100%;
+	background-image:url("DSC_0348fix.jpg");
+	background-size:cover;
+	background-repeat:no-repeat;
+	background-color:white;
+	margin:0 auto;
+}
 
 #map-canvas {
 	margin: 0 auto;
-	margin-top: 50px;
-	height: 600px;
-	width: 800px;
-	z-index: 10;
+	height: 500px;
+	width: 100%;
+}
+#about{
+	height:305px;
+	width:100%;
+	background-color:grey;
+	margin-top:-3px;
+	color: white;
+}
+#aboutfresh{
+	width:600px;
+	margin:0 auto;
+	text-align:center;
+	height:250px;
+	padding-top:15px;
+	color: white;
 }
 
+#howitworks{
+	height:500px;
+	width:100%;
+	background-color:white;
+	margin-top:-3px;
+}
+#steps{
+	width:100%;
+	height:400px;
+	text-align: center;
+	padding-top: 10px;
+}
+#steps div{
+	display: inline-block;
+	vertical-align: top;
+	text-align: center;
+}
+.steps{
+	width: 400px;
+	height: 400px;
+	text-align: center;
+}	
+.steps p{
+	width:400px;
+}
+#oneimg{
+	background-image: url("sign.png");
+	width: 290px;
+	height: 300px;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+#twoimg{
+	background-image: url("locate.png");
+	width: 275px;
+	height: 300px;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+#threeimg{
+	background-image: url("donutmarker.png");
+	width: 205px;
+	height: 300px;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
 nav {
 	margin-bottom: 50px;
 	z-index: 11;
