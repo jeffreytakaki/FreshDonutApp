@@ -7,7 +7,9 @@ class User < ActiveRecord::Base
 	validates :email, presence: true, :on => :create
 	validates :password, presence: true, :on => :create
 	
-	has_many :donuts
+	has_many :donuts, dependent: :destroy
+	# dependent: :destroy used for when users are deleted, all the related data is 
+	# deleted with it (donuts associated to users)
 	
 	geocoded_by :address   # can also be an IP address
 	after_validation :geocode

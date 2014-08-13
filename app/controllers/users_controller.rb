@@ -12,6 +12,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 	  @donut = Donut.new
 
+      if current_user
+        @donuts = current_user.donuts
+      end
+    respond_with @user
   end
 
   def new

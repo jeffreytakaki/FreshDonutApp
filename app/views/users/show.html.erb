@@ -1,12 +1,20 @@
 <h1>Let them know what's fresh!</h1>
 
-
 <div class="row">
-  <div class="large-6 columns">
-	<%= render 'form' %>
-  </div>
-  
+	<div class="large-6 columns">
+		<%= render 'form' %>
+	</div>
+	<div class="large-6 columns">
+
+		<% @donuts.each do |d| %>
+		
+		<li><%= d.name%> <strong><%= d.created_at%></strong>></li>
+
+		<% end %>
+	</div>
 </div>
+
+
 
 
 

@@ -75,6 +75,8 @@
         handleNoGeolocation(browserSupportFlag);
       });
     }
+
+
     // Browser doesn't support Geolocation
     else {
       browserSupportFlag = false;
@@ -114,30 +116,46 @@
         function mapUsers(user_data) {
 
           // for loop to place each marker with info from the JSON
-          console.log(user_data);
           var image = 'assets/donutmarker275small.png';
-          var i, newMarker;
-                  
-          for (i=0; i < user_data.users.length; i++) {
+          var newMarker;
+
+            for (var i=0; i < user_data.length; i++) {                
+              newMarker = new google.maps.Marker({
+                position: new google.maps.LatLng(user_data[i].latitude, user_data[i].longitude),
+                map: map, 
+                title: "Fresh Donut",
+                icon: image
+              });
+
               
-            newMarker = new google.maps.Marker({
-              position: new google.maps.LatLng(user_data["users"][i]["latitude"], user_data["users"][i]["longitude"]),
-              map: map, 
-              title: (user_data["users"][i]["name"]),
-              icon: image
-            });
-          var contentString = "hello";
 
-          var infowindow = new google.maps.InfoWindow({
-              content: contentString
-          });
+              
+              var freshList;
+              for (var j=0; j < user_data[i].donuts.length; j++) {    
+               freshList += user_data[i].donuts[j].name + '<br />';
+             }
+             var contentString = '<div style="width: 150px; height: 150px;">'+ user_data[i].name +'<br />' + '<br />' + 'Location:' + user_data[i].address + '<br />' + '<br />' + 'Fresh Donuts:' + '<br /><br />' + freshList + '<br /></div>';
 
-          google.maps.event.addListener(newMarker, 'click', function() {
-          infowindow.open(map,newMarker);
-          });
+              google.maps.event.addListener(newMarker, 'click', getInfoCallback(map, contentString));      
+            } //end of for(i) loop
 
-          };
-        }
+                  
+        
+         // var infowindow = new google.maps.InfoWindow({
+         //        content: contentString
+         //      });
+          // var infowindow to get windows up. this isn't needed as getInfoCallback replaced it. 
+
+
+        } //end of mapUsers function
+        
+        function getInfoCallback(map, content) {
+          var infowindow = new google.maps.InfoWindow({content: content});
+          return function() {
+                infowindow.setContent(content); 
+                infowindow.open(map, this);        
+          }; 
+        } //end of getInfoCallback function
 
 // start of yelp api
 // geolocation coordinates were formatted as "formatted address"
@@ -200,9 +218,6 @@
       } // end of ajax call 
     }); // end of yelp api
   } //end of yelp function
-
-
-
 } //end of initialize tag
 
 
@@ -215,9 +230,8 @@ function geocodeYelpResults(results) {
       var marker = new google.maps.Marker({
             position: geodata[0].geometry.location,
             map: map,
-      });
-    });
-    var businessaddress = console.log(business.location.address) 
+      });//end of marker
+    });//end of geocoder
   }); //end of results.forEach
 } //end of geocodeYelpResults function
      
@@ -225,5 +239,13 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
 </script>
 <!-- End of Google Maps and Geolocation -->
+
+
+
+
+
+            
+    
+
 
 

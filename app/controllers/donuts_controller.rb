@@ -13,7 +13,7 @@ class DonutsController < ApplicationController
     #1  Grab the user's location's coordinates @location
 
 
-    #2  The we plug in the @location into the yelp api for the map 
+    #2  Then we plug in the @location into the yelp api for the map 
     # @yelpsearch = Yelp.client.search("350 7th St N, Minneapolis, MN", term: "donuts",limit: 40).businesses
       # @yelpsearch = Yelp.client.search(latlng, term: "donuts",limit: 40).businesses
 
