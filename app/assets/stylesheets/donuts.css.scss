@@ -5,66 +5,107 @@
 /*body {
 	background-image: url('donutbackground.png');
 }*/
+
+
+
+#freshdonutlogo {
+	/*background-image:url("nav_bar_logo.png");*/
+	height: 60px;
+	width: 180px;
+	background-size: contain;
+	background-repeat: no-repeat;
+	z-index: 111;
+}
+#navdonutlogo {
+	background-image:url("nav_bar_logo.png");
+	height: 60px;
+	width: 180px;
+	background-size: contain;
+	background-repeat: no-repeat;
+	margin: 10px 0 0 10px;
+}
+
+
+/*** Start of Homepage Styling ***/
 .container{
 	width:100%;
 	height:auto;
 }
-#donutimg{
-	height:305px;
-	width:100%;
-	background-image:url("DSC_0348fix.jpg");
-	background-size:cover;
-	background-repeat:no-repeat;
-	background-color:white;
-	margin:0 auto;
+
+.columns {
+	margin: 0;
+	padding: 0;
+}
+
+.row.donuthome {
+	max-width: 100%;
+}
+
+.donutDiv {
+	padding: 20px;
+}
+	
+
+.donutbackground {
+	background-image: url("DSC_0348fix.jpg") 50%;
+	width: 100%;
+	height: 830px;
+	background-size: cover;
+	background-repeat: no-repeat;
+	/*background: rgba(255,255,255,0.8)*/
+}
+
+.homelogo {
+	background-image: url("freshdonutlogo5.png");
+	width: 400px;
+	height: 200px;
+	background-size: contain;
+	background-repeat: no-repeat;
+	z-index: 1;
+	margin: 0 auto;
+}
+
+.donutlistContainer {
+	width: 100%;
+	height: auto;
+	background-color: #FFAFAF;
+	border-radius: 10px;
+	padding: 5px;
+}
+
+h4.donutlistheader {
+	text-align: center;
+}
+
+.donutlist {
+	font-size: 12px;
+}
+
+.donuttable {
+	background-color: #FFAFAF;
+}
+
+.tablelist {
+	width: 75%;
+}
+
+.small-6.large-7.columns.mapContainer {
+	height: 775px;
+	margin-top: -70px;
 }
 
 #map-canvas {
-	margin: 0 auto;
-	height: 500px;
+	height: 100%;
 	width: 100%;
 }
-#about{
-	height:305px;
-	width:100%;
-	background-color:grey;
-	margin-top:-3px;
-	color: white;
-}
-#aboutfresh{
-	width:600px;
-	margin:0 auto;
-	text-align:center;
-	height:250px;
-	padding-top:15px;
-	color: white;
+
+.top-bar {
+	width: 100%;
+	height: 70px;
+	background:rgba(0, 0, 0, 0.5);
+	z-index: 11;
 }
 
-#howitworks{
-	height:500px;
-	width:100%;
-	background-color:white;
-	margin-top:-3px;
-}
-#steps{
-	width:100%;
-	height:400px;
-	text-align: center;
-	padding-top: 10px;
-}
-#steps div{
-	display: inline-block;
-	vertical-align: top;
-	text-align: center;
-}
-.steps{
-	width: 400px;
-	height: 400px;
-	text-align: center;
-}	
-.steps p{
-	width:400px;
-}
 #oneimg{
 	background-image: url("sign.png");
 	width: 290px;
@@ -86,14 +127,5 @@
 	background-size: contain;
 	background-repeat: no-repeat;
 }
-nav {
-	margin-bottom: 50px;
-	z-index: 11;
-}
 
-/*	-webkit-filter: blur(1px);
-  -moz-filter: blur(1px);
-  -o-filter: blur(5px);
-  -ms-filter: blur(5px);
-  filter: blur(5px);
-*/
+/*** End of Home Page Styling ***/

@@ -1,33 +1,54 @@
 <div class="container">
-  <div id="donutimg"></div>
-  <div id="map-canvas"></div>
-  <div id="about">
-    <div id="aboutfresh">
-      <h1>About Us</h1>
-      <p>Here at Fresh Donuts, our goal is to get these fresh breaded treats to the masses.</p>
+  <div class="row donuthome">
+    <div class="small-6 large-5 columns donutDiv">
+      <div class="donutbackground">
+        <div class="large-12 columns">
+          <div class="homelogo"></div>
+        </div>
+        <div class="large-12 columns">
+          <div class ="donutlistContainer">
+            <h4 class="donutlistheader">FreshDonuts in your area!</h4>
+            <div class="donutlist">
+              <table class="donuttable">
+              <% @donuts.each do |d| %>
+                <tr>
+                  <td class="tablelist"><%= d.name%></td> 
+                  <td class="tablelist">hello</td>
+                </tr>
+              <% end %>
+              </table>
+            </div>
+
+          </div>
+        </div>
+      </div><!-- end of donutbackground -->
+    </div><!-- End of donutdiv -->
+    <div class="small-6 large-7 columns mapContainer">
+      <div id="map-canvas"></div>
     </div>
+  </div><!-- end of Row donutHome -->
+
+  <div class="row vendorhome">
+
+  <div class="small-2 large-4 columns">
+  <div class=></div>
   </div>
-  <div id="howitworks">
-    <div id="steps">
-      <h1>How It Works</h1>
-      <div class="steps" id="one">
-        <h3>Step One</h3>
-        <div id="oneimg"></div>
-        <p>Sign Up</p>
-      </div>
-      <div class="steps" id="two">
-        <h3>Step Two</h3>
-        <div id="twoimg"></div>
-        <p>Enter in Location</p>
-      </div>
-      <div class="steps" id="three">
-        <h3>Step Three</h3>
-        <div id="threeimg"></div>
-        <p>Find your Fresh Donuts</p>
-      </div>
-    </div>
+  <div class="small-4 large-4 columns">
   </div>
-</div>
+  <div class="small-6 large-4 columns">
+  </div>
+
+
+
+
+  </div><!-- end of row vendorhome -->
+
+
+</div><!-- end of Container -->
+
+
+
+
 <!-- Start of Google Maps and Geolocation using HTML 5 -->
 <!-- User must accept geolocation settings to use FreshDonut -->
 <script type="text/javascript">
@@ -41,7 +62,7 @@
     var DonutMarker;
     var mapOptions = {
       center: myLatLng, // see above
-      zoom: 15 // arbitrary; you can zoom at whichever level you like
+      zoom: 13 // arbitrary; you can zoom at whichever level you like
     };
     map = new google.maps.Map(document.getElementById("map-canvas"),
       mapOptions); // rendering a map in a div with the id of "map-canvas" and the options specified above in mapOptions
@@ -118,6 +139,7 @@
           // for loop to place each marker with info from the JSON
           var image = 'assets/donutmarker275small.png';
           var newMarker;
+          var freshList;
 
             for (var i=0; i < user_data.length; i++) {                
               newMarker = new google.maps.Marker({
@@ -130,32 +152,20 @@
               
 
               
-              var freshList;
-              for (var j=0; j < user_data[i].donuts.length; j++) {    
-               freshList += user_data[i].donuts[j].name + '<br />';
-             }
-             var contentString = '<div style="width: 150px; height: 150px;">'+ user_data[i].name +'<br />' + '<br />' + 'Location:' + user_data[i].address + '<br />' + '<br />' + 'Fresh Donuts:' + '<br /><br />' + freshList + '<br /></div>';
+              for (var j=0; j < user_data[i]["donuts"].length; j++) {    
+               freshList += user_data[i]["donuts"][j].name + '<br />';
+
+              
+
+               } // end of for(j) loop
+
+                 var contentString = '<div style="width: 150px; height: 150px;">'+ user_data[i].name +'<br />' + '<br />' + 'Location:' + user_data[i].address + '<br />' + '<br />' + 'Fresh Donuts:' + '<br /><br />' + freshList + '</div>';
+
 
               google.maps.event.addListener(newMarker, 'click', getInfoCallback(map, contentString));      
             } //end of for(i) loop
-
-                  
-        
-         // var infowindow = new google.maps.InfoWindow({
-         //        content: contentString
-         //      });
-          // var infowindow to get windows up. this isn't needed as getInfoCallback replaced it. 
-
-
         } //end of mapUsers function
-        
-        function getInfoCallback(map, content) {
-          var infowindow = new google.maps.InfoWindow({content: content});
-          return function() {
-                infowindow.setContent(content); 
-                infowindow.open(map, this);        
-          }; 
-        } //end of getInfoCallback function
+       
 
 // start of yelp api
 // geolocation coordinates were formatted as "formatted address"
@@ -182,7 +192,7 @@
       };
 
     var terms = 'donuts';
-    var near = 'Los+Angeles';
+    var near = 'Santa+Monica';
     var accessor = {
       consumerSecret: auth.consumerSecret,
       tokenSecret: auth.accessTokenSecret
@@ -221,20 +231,36 @@
 } //end of initialize tag
 
 
-function geocodeYelpResults(results) {
+  
+  
 
+
+function geocodeYelpResults(results) {
   results.forEach(function (business) {
     var addressString = business.location.address[0] + ", " + business.location.city + ", " + business.location.state_code + " " + business.location.postal_code;
     var geocoder = new google.maps.Geocoder;
     geocoder.geocode({address: addressString}, function(geodata) {
-      var marker = new google.maps.Marker({
-            position: geodata[0].geometry.location,
-            map: map,
-      });//end of marker
+    var marker = new google.maps.Marker({
+          position: geodata[0].geometry.location,
+          map: map,
+    });//end of marker
+
+    var contentwindow = '<div style="width: 150px; height: 150px;">'+ business.name + '<br />'+'<br />' + business.location.address + '<br />' + business.location.city + '<br />' + business.location.postal_code + ", " + business.location.state_code + '</div>';
+
+      google.maps.event.addListener(marker, 'click', getInfoCallback(map, contentwindow));      
     });//end of geocoder
   }); //end of results.forEach
 } //end of geocodeYelpResults function
-     
+
+// getInfoCallback used to retrieve and post infowindows to google maps.
+function getInfoCallback(map, content) {
+    var infowindow = new google.maps.InfoWindow({content: content});
+    return function() {
+          infowindow.setContent(content); 
+          infowindow.open(map, this);        
+    }; 
+  };
+
 google.maps.event.addDomListener(window, 'load', initialize);
 
 </script>

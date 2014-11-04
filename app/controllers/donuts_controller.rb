@@ -5,7 +5,7 @@ class DonutsController < ApplicationController
   respond_to :json, :html
 
   def index
-    # @donuts = donuts.all
+    @donuts = Donut.all
     # respond_with @donuts
   
     # render json for angular when implemented.

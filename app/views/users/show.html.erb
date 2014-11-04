@@ -1,5 +1,9 @@
-<h1>Let them know what's fresh!</h1>
+<div class="userTitle">
+<h1 class="userTitle">Hi, <%=current_user.name%>!</h1>
+</div>
 
+
+<!-- Grid System for Donut Upload and List -->
 <div class="row">
 	<div class="large-6 columns">
 		<%= render 'form' %>
@@ -7,13 +11,13 @@
 	<div class="large-6 columns">
 
 		<% @donuts.each do |d| %>
-		
-		<li><%= d.name%> <strong><%= d.created_at%></strong>></li>
-
+		<table class="table">
+  			<%= d.name%> <strong><%= d.created_at%></strong>>
+		</table>
 		<% end %>
 	</div>
 </div>
-
+<!-- end of Grid System -->
 
 
 

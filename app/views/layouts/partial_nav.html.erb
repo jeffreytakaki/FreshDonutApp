@@ -1,24 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>FreshDonut</title>
-    <link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
-
-    <%= stylesheet_link_tag    "application" %>
-    <%= javascript_include_tag "vendor/modernizr" %>
-    <%= javascript_include_tag "application" %>
-    <%= csrf_meta_tags %>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
-
-  </head>
-
-  <body>
-
 <!-- start of nav bar -->
 <div class="sticky">
   <nav class="top-bar" data-topbar data-options="sticky_on: large">
@@ -52,10 +31,3 @@
   </nav>
 </div>
 <!-- end of nav bar -->
-
-<div id = "spacer"></div>
-
-    <%= yield %>
-    
-  </body>
-</html>

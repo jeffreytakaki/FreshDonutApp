@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 
 	validates_presence_of :name, :on => :create
 	validates :name, presence: true, :on => :create
-	validates :email, presence: true, :on => :create
+	validates :email, presence: true, :on => :create, uniqueness: true;
 	validates :password, presence: true, :on => :create
 	
 	has_many :donuts, dependent: :destroy

@@ -1,10 +1,13 @@
 FreshDonutAppNew::Application.routes.draw do
 
 
+  get "businesses/index"
 resources :donut_types
 resources :donuts
 resources :users
 resource :sessions, only: [:new, :show, :create, :destroy]
+resources :business
+
 
 root "donuts#index"
 

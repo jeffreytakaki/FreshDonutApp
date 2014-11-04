@@ -1,12 +1,26 @@
-<h1>Let's create a business...</h1>
 
-<%= form_for @user do |u| %>
-	<%= u.text_field :name, :placeholder => "Name"  %>
-	<%= u.text_field :email, :placeholder => "Email"  %>
-	<%= u.text_field :address, :placeholder => "Address"  %>
-	<%= u.password_field :password, :placeholder => "Password" %>	
-	<!-- <a href="#" class="button [radius round]" type ="submit">Radius Button</a> -->
-	<button type="submit" class="btn btn-primary small">Create Account</button>
-<% end %>
+
+<div id="newUserContainer">
+	<div class="row" id="whiteSpace">
+		<div class="large-6 columns">
+			<h2 class="userFont">Are you a Donut Vendor?</h2>
+			<h3 class="h3user">Looking to post fresh donuts? </h3>
+			<p class="userFont">This is the only application that follows when donuts are hot and fresh!</p>
+			<h3 class="h3user">Sign your business up to begin!</h3>
+			<p class="userFont">Create an account to begin posting fresh donuts!</p>
+	  	</div>
+	  <div class="large-6 columns">	
+	  	<%= form_for @user do |u| %>
+			<%= u.text_field :name, :placeholder => "Name"  %>
+			<%= u.text_field :email, :placeholder => "Email"  %>
+			<%= u.text_field :address, :placeholder => "Address"  %>
+			<%= u.password_field :password, :placeholder => "Password" %>	
+			<button type="submit" class="btn btn-primary small">Create Account</button>
+		<% end %>
+		</div>
+	</div>
+</div>
+
+
 
 

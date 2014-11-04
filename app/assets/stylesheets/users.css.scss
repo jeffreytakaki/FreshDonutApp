@@ -1,3 +1,38 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+#newUserContainer {
+	background-image:url("donutlayerbackground.png");
+	background-repeat: repeat;
+	height: 830px;
+	width: 100%;
+	margin: -70px 0 0 0;
+	/*z-index: -999;*/
+	position: absolute;
+}
+
+#whiteSpace {
+	background-color: rgba(255,255,255,0.9);
+	height: 600px;
+	padding-top: 100px;
+	margin-top: 100px;
+	/*z-index: 999;*/
+	position: relative;
+}
+
+.userFont {
+	font-family: 'Ubuntu', sans-serif;
+}
+
+.h3user {
+	font-family: 'Permanent Marker', cursive;
+	color: pink;
+}
+
+.userTitle {
+	text-align: center;
+	height: 100px;
+	margin: 0 auto;
+}
