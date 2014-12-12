@@ -32,7 +32,12 @@
 	height:auto;
 }
 
-.columns {
+.columnslogo {
+	margin: 0;
+	padding: 0;
+}
+
+.columnsmap {
 	margin: 0;
 	padding: 0;
 }
@@ -75,6 +80,7 @@
 
 h4.donutlistheader {
 	text-align: center;
+	font-family: 'Righteous', cursive;
 }
 
 .donutlist {
@@ -83,15 +89,34 @@ h4.donutlistheader {
 
 .donuttable {
 	background-color: #FFAFAF;
+	margin: 0 auto;
 }
 
 .tablelist {
 	width: 75%;
 }
 
+.vendorclick {
+	text-align: center;
+	margin-top: 309px;
+	padding: 15px;
+	font-family: arial;
+	font-size: 30px;
+	font-weight: 200;
+	background-color: #FFAFAF;
+	width: 600px;
+	height: 60px;
+	margin-right: -20px;
+}
+
+a#clickhere1 {
+	color: white;
+}
+
 .small-6.large-7.columns.mapContainer {
-	height: 775px;
+	height: 830px;
 	margin-top: -70px;
+	padding: 0;
 }
 
 #map-canvas {
@@ -106,26 +131,92 @@ h4.donutlistheader {
 	z-index: 11;
 }
 
+/* START OF instructions section */
+
+h4.postfresh {
+	font-family: 'Righteous', cursive;
+	font-size: 30px;
+	color: white;
+}
+
+.instructionContainer {
+	background-color: #FFAFAF;
+	width: 100%;
+	height: auto;
+	padding: 50px;
+}
+.vendorinstructionContainer {
+	width: 1300px;
+	height: auto;
+	margin: 0 auto;
+	
+}
+
+
+.instructionsLeft {
+	width: 500px;
+	height: 200px;
+	
+}
+
+.instructionsRight {
+	width: 500px;
+	height: 200px;
+
+}
+
+p.vendorinstructionparagraph {
+	font-size: 18px;
+	text-align: justify;
+	color: white;
+
+}
+
+/* END OF instructions section */
+
+
+.row.vendorhome {
+	height: auto;
+	max-width: 1300px;
+	/*margin-top: -70px;*/
+	/*background-color: lightgrey;*/
+	padding: 40px;
+}
+
+
+h1.vendortitle {
+	font-size: 25px;
+	font-family: 'Righteous', cursive;
+}
+.vendorcolumns {
+	width: 33%;
+	margin: 0 auto;
+	text-align: center;
+}
+
 #oneimg{
 	background-image: url("sign.png");
-	width: 290px;
-	height: 300px;
+	width: 200px;
+	height: 240px;
 	background-size: contain;
 	background-repeat: no-repeat;
+	margin: 0 auto;
 }
 #twoimg{
 	background-image: url("locate.png");
-	width: 275px;
-	height: 300px;
+	width: 200px;
+	height: 240px;
 	background-size: contain;
 	background-repeat: no-repeat;
+	margin: 0 auto;
 }
 #threeimg{
 	background-image: url("donutmarker.png");
-	width: 205px;
-	height: 300px;
+	width: 200px;
+	height: 240px;
 	background-size: contain;
 	background-repeat: no-repeat;
+	margin: 0 auto;
 }
 
 /*** End of Home Page Styling ***/

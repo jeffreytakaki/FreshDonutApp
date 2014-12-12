@@ -2,24 +2,36 @@
   <div class="row donuthome">
     <div class="small-6 large-5 columns donutDiv">
       <div class="donutbackground">
-        <div class="large-12 columns">
+        <div class="large-12 columnslogo">
           <div class="homelogo"></div>
         </div>
-        <div class="large-12 columns">
-          <div class ="donutlistContainer">
+        <div class="large-12 columnsmap">
+          <div class ="donutlistContainer" id="donutTop">
             <h4 class="donutlistheader">FreshDonuts in your area!</h4>
             <div class="donutlist">
               <table class="donuttable">
-              <% @donuts.each do |d| %>
+              <%# @results.each do |d| %>
                 <tr>
-                  <td class="tablelist"><%= d.name%></td> 
-                  <td class="tablelist">hello</td>
+                  <!-- <td class="tablelist"><%#= d.name%></td> -->
+                  <td class="tablelist">Maple Bar</td> 
+                  <td class="tablelist">Fried Circles</td>
                 </tr>
-              <% end %>
+                <tr>
+                  <td class="tablelist">Maple Bar</td> 
+                  <td class="tablelist">Fried Circles</td>
+                </tr>
+                <tr>
+                  <td class="tablelist">Maple Bar</td> 
+                  <td class="tablelist">Fried Circles</td>
+                </tr>
+              <%# end %>
               </table>
             </div>
 
           </div>
+        </div>
+        <div class="large-12 columns vendorclick">
+          <a id="clickhere1">Are You a Vendor? Click Here</a>
         </div>
       </div><!-- end of donutbackground -->
     </div><!-- End of donutdiv -->
@@ -28,18 +40,34 @@
     </div>
   </div><!-- end of Row donutHome -->
 
-  <div class="row vendorhome">
-
-  <div class="small-2 large-4 columns">
-  <div class=></div>
+  <div class="instructionContainer">
+    <div class="row vendorinstructionContainer">
+      <div class="large-6 columns instructionsLeft">
+        <h4 class="postfresh">Are you a business looking to post freshdonuts?</h4>
+      </div>
+      <div class="large-6 columns instructionsRight">
+        <p class="vendorinstructionparagraph">Freshdonut  was created to help donutmakers bring their delectables to their guests as fresh as possible. A donut should be enjoyed in it's prime - immediately. If you are a vendor, follow the 3 easy steps for a happier donutmaker and guest relationship.</p>
+      </div>
+    </div>
   </div>
-  <div class="small-4 large-4 columns">
+
+  <div class="row vendorhome">   
+      <div class="small-2 large-4 columns vendorcolumns">
+        <div id="oneimg"></div>
+        <h1 class="vendortitle">Register Your Business</h1>
+      </div>
+      <div class="small-4 large-4 columns vendorcolumns">
+        <div id="twoimg"></div>
+        <h1 class="vendortitle">Turn on Geolocation</h1>
+      </div>
+      <div class="small-6 large-4 columns vendorcolumns">
+        <div id="threeimg"></div>
+        <h1 class="vendortitle">Post Donuts!</h1>
+      </div>
   </div>
-  <div class="small-6 large-4 columns">
-  </div>
 
 
-
+<a id="clickhere2">Go Back Up</a>
 
   </div><!-- end of row vendorhome -->
 
@@ -48,6 +76,22 @@
 
 
 
+<!-- jQuery Scrolling -->
+<script type="text/javascript">
+
+
+$('#clickhere1').click(
+  function (e) {
+    $('html, body').animate({scrollTop: '800px'}, 800);
+  }
+);
+$('#clickhere2').click(
+  function (e) {
+    $('html, body').animate({scrollTop: '0px'}, 800);
+  }
+);
+
+</script>
 
 <!-- Start of Google Maps and Geolocation using HTML 5 -->
 <!-- User must accept geolocation settings to use FreshDonut -->

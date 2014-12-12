@@ -5,17 +5,10 @@ class DonutsController < ApplicationController
   respond_to :json, :html
 
   def index
-    @donuts = Donut.all
-    # respond_with @donuts
-  
-    # render json for angular when implemented.
-
-    #1  Grab the user's location's coordinates @location
-
-
-    #2  Then we plug in the @location into the yelp api for the map 
-    # @yelpsearch = Yelp.client.search("350 7th St N, Minneapolis, MN", term: "donuts",limit: 40).businesses
-      # @yelpsearch = Yelp.client.search(latlng, term: "donuts",limit: 40).businesses
+    # @donuts = Donut.all
+    query = "select user_id, count(user_id) as result from donuts group by user_id order by result desc limit 5;"
+    @results = ActiveRecord::Base.connection.execute(query)
+    respond_with @results
 
   end
 

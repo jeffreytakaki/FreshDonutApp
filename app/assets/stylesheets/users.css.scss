@@ -16,10 +16,14 @@
 #whiteSpace {
 	background-color: rgba(255,255,255,0.9);
 	height: 600px;
-	padding-top: 100px;
+	padding: 85px;
 	margin-top: 100px;
 	/*z-index: 999;*/
 	position: relative;
+}
+
+.usernewcolumns {
+	width: 45%;
 }
 
 .userFont {
