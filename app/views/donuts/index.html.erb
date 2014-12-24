@@ -10,21 +10,13 @@
             <h4 class="donutlistheader">FreshDonuts in your area!</h4>
             <div class="donutlist">
               <table class="donuttable">
-              <%# @results.each do |d| %>
-                <tr>
-                  <!-- <td class="tablelist"><%#= d.name%></td> -->
-                  <td class="tablelist">Maple Bar</td> 
-                  <td class="tablelist">Fried Circles</td>
-                </tr>
-                <tr>
-                  <td class="tablelist">Maple Bar</td> 
-                  <td class="tablelist">Fried Circles</td>
-                </tr>
-                <tr>
-                  <td class="tablelist">Maple Bar</td> 
-                  <td class="tablelist">Fried Circles</td>
-                </tr>
-              <%# end %>
+                <% @donuts.each do |d| %>
+                  <tr>
+                    <td class="tablelist"><%= d.user.name %></td>
+                    <td class="tablelist"><%= d.name %></td>
+                    <td class="tablelist"><%= d.created_at %></td>
+                  </tr>
+                <% end %>
               </table>
             </div>
 

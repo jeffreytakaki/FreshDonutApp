@@ -25,6 +25,14 @@
 	margin: 10px 0 0 10px;
 }
 
+li.has-dropdown.not-click {
+	height: 70px;
+}
+
+.top-bar-section li:not(.has-form) a:not(.button) {
+	padding: 12px 15px;
+}
+
 
 /*** Start of Homepage Styling ***/
 .container{
@@ -93,12 +101,13 @@ h4.donutlistheader {
 }
 
 .tablelist {
-	width: 75%;
+	
 }
 
 .vendorclick {
 	text-align: center;
-	margin-top: 309px;
+	
+	margin-top: 233px;
 	padding: 15px;
 	font-family: arial;
 	font-size: 30px;

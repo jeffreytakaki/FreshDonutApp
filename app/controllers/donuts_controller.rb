@@ -5,10 +5,18 @@ class DonutsController < ApplicationController
   respond_to :json, :html
 
   def index
-    # @donuts = Donut.all
-    query = "select user_id, count(user_id) as result from donuts group by user_id order by result desc limit 5;"
-    @results = ActiveRecord::Base.connection.execute(query)
-    respond_with @results
+    @donuts = Donut.all
+
+    # query = "select user_id, count(user_id) as result from donuts group by user_id order by result desc limit 5;"
+    # @results = ActiveRecord::Base.connection.execute(query)
+    # respond_with @results
+
+    # @latestdonuts = 
+
+    # create id for TD, using jquery sort if the IDs match, hide. 
+
+    
+
 
   end
 
