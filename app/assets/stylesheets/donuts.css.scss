@@ -106,8 +106,8 @@ h4.donutlistheader {
 
 .vendorclick {
 	text-align: center;
-	
-	margin-top: 233px;
+	/*margin-top: 233px;*/
+	/*margin-right: -20px;*/
 	padding: 15px;
 	font-family: arial;
 	font-size: 30px;
@@ -115,7 +115,11 @@ h4.donutlistheader {
 	background-color: #FFAFAF;
 	width: 600px;
 	height: 60px;
-	margin-right: -20px;
+	position: absolute;
+	top: 700px;
+	left: 0px;
+	
+	
 }
 
 a#clickhere1 {
@@ -131,6 +135,7 @@ a#clickhere1 {
 #map-canvas {
 	height: 100%;
 	width: 100%;
+	max-width: none;
 }
 
 .top-bar {
